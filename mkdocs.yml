@@ -1,0 +1,10 @@
+site_name: pytest-fixturecollection
+site_description: A pytest plugin to collect tests based on fixtures being used in tests
+site_author: Jitendra Yejare
+
+theme: readthedocs
+
+repo_url: https://github.com/SatelliteQE/pytest-fixturecollection
+
+pages:
+- Home: index.md

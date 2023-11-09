@@ -11,7 +11,7 @@ def pytest_addoption(parser):
 
         Options: [ specific_fixture_name | list_of fixture names ]
 
-        example: pytest tests/foreman --uses-fixtures target_sat module_target_sat
+        Ex: pytest tests/foreman --uses-fixtures target_sat,module_target_sat
     '''
     parser.addoption("--uses-fixtures", nargs='?', help=help_text)
 
@@ -23,7 +23,8 @@ def pytest_collection_modifyitems(items, config):
         return
 
     filter_fixtures = config.getvalue('uses_fixtures')
-    fixtures_list = filter_fixtures.split(',') if ',' in filter_fixtures else [filter_fixtures]
+    fixtures_list = filter_fixtures.split(',') if ',' in filter_fixtures else [
+        filter_fixtures]
     selected = []
     deselected = []
 

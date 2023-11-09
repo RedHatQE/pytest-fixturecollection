@@ -24,13 +24,17 @@ This `pytest`_ plugin was generated with `Cookiecutter`_ along with `@hackebrot`
 Features
 --------
 
-* TODO
+* Filter tests collection/execution based on fixtures being used by tests
+* One or more number(comma separated) of fixtures are supported with option `--uses-fixtures`
 
+One can combine fixture based collection with pytests default options/plugins for further smart collection.
 
 Requirements
 ------------
 
-* TODO
+* Python >= 3.9
+* Pytest >= 3.5
+
 
 
 Installation
@@ -44,7 +48,13 @@ You can install "pytest-fixturecollection" via `pip`_ from `PyPI`_::
 Usage
 -----
 
-* TODO
+
+Once plugin is installed, run pytest command with "--uses-fixtures" option as shown below::
+
+    # pytest --uses-fixtures fixture1,fixture2 tests/
+
+
+Explanation: All the tests using `fixture1` or `fixture2` inside tests directory would be collected and executed and rest tests would be uncollected (not executed). You can also choose to just `--collect-only` to view what tests are collected.
 
 Contributing
 ------------

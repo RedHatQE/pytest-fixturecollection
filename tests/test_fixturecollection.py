@@ -1,64 +1,66 @@
 # -*- coding: utf-8 -*-
+import pytest
 
 
-def test_bar_fixture(testdir):
-    """Make sure that pytest accepts our fixture."""
-
-    # create a temporary pytest test module
-    testdir.makepyfile("""
-        def test_sth(bar):
-            assert bar == "europython2015"
-    """)
-
-    # run pytest with the following cmd args
-    result = testdir.runpytest(
-        '--foo=europython2015',
-        '-v'
-    )
-
-    # fnmatch_lines does an assertion internally
-    result.stdout.fnmatch_lines([
-        '*::test_sth PASSED*',
-    ])
-
-    # make sure that that we get a '0' exit code for the testsuite
-    assert result.ret == 0
-
-
-def test_help_message(testdir):
-    result = testdir.runpytest(
-        '--help',
-    )
-    # fnmatch_lines does an assertion internally
-    result.stdout.fnmatch_lines([
-        'fixturecollection:',
-        '*--foo=DEST_FOO*Set the value for the fixture "bar".',
-    ])
-
-
-def test_hello_ini_setting(testdir):
-    testdir.makeini("""
-        [pytest]
-        HELLO = world
-    """)
-
+@pytest.fixture()
+def sample_testfile(testdir):
     testdir.makepyfile("""
         import pytest
 
         @pytest.fixture
-        def hello(request):
-            return request.config.getini('HELLO')
+        def fixture1():
+            return "Value1"
 
-        def test_hello_world(hello):
-            assert hello == 'world'
+        @pytest.fixture
+        def fixture2():
+            return "Value2"
+
+        @pytest.fixture
+        def fixture3():
+            return "Value3"
+
+
+        def test_fixcollect1(fixture1):
+            pass
+
+        def test_fixcollect2(fixture2):
+            pass
+
+        def test_fixcollect3(fixture1, fixture2):
+            pass
+
+        def test_withoutfix():
+            pass
     """)
+    return testdir
 
-    result = testdir.runpytest('-v')
 
-    # fnmatch_lines does an assertion internally
-    result.stdout.fnmatch_lines([
-        '*::test_hello_world PASSED*',
-    ])
+def test_collection_with_single_fixture(sample_testfile):
+    """Make sure tests are collected as per fixture use"""
 
-    # make sure that that we get a '0' exit code for the testsuite
+    result = sample_testfile.runpytest(
+        '-v', '--collect-only', '--uses-fixtures=fixture1'
+    )
+
     assert result.ret == 0
+    resout = result.stdout.str()
+    assert '2/4 tests collected' in resout
+    assert 'test_fixcollect1' in resout
+    assert 'test_fixcollect3' in resout
+    assert 'test_withoutfix' not in resout
+
+
+def test_collection_with_multi_fixture(sample_testfile):
+    """Make sure tests are collected as per fixture use"""
+
+    result = sample_testfile.runpytest(
+        '-v', '--collect-only', '--uses-fixtures=fixture1,fixture2'
+    )
+
+    assert result.ret == 0
+    resout = result.stdout.str()
+    assert '3/4 tests collected' in resout
+    assert 'test_fixcollect1' in resout
+    assert 'test_fixcollect2' in resout
+    assert 'test_fixcollect3' in resout
+    assert 'test_withoutfix' not in resout

@@ -1,6 +1,6 @@
 # Catalog entry for Backstage [backstage.io]
 apiVersion: backstage.io/v1alpha1
-kind: Plugin
+kind: Component
 metadata:
   name: pytest-fixturecollection
   title: pytest-fixturecollection

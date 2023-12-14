@@ -1,0 +1,25 @@
+# Catalog entry for Backstage [backstage.io]
+apiVersion: backstage.io/v1alpha1
+kind: Plugin
+metadata:
+  name: pytest-fixturecollection
+  title: pytest-fixturecollection
+  description: Pytest plugin to collect tests based on fixtures!
+  links:
+    - title: PyPi
+      url: https://pypi.org/project/pytest-fixturecollection
+  tags:
+    - python
+    - pytest
+    - plugin
+    - test-framework
+    - test-selection
+    - testing
+  namespace: quality-community
+  annotations:
+    github.com/project-slug: RedHatQE/pytest-fixturecollection
+    backstage.io/techdocs-ref: https://github.com/RedHatQE/pytest-fixturecollection/blob/main/README.rst
+spec:
+  type: plugin
+  owner: group:redhat/redhat-qe
+  lifecycle: production

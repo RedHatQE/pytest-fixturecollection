@@ -19,7 +19,7 @@ setup(
     maintainer='Jitendra Yejare',
     maintainer_email='jyejare@redhat.com',
     license='BSD-3',
-    url='https://github.com/SatelliteQE/pytest-fixturecollection',
+    url='https://github.com/RedhatQE/pytest-fixturecollection',
     description='A pytest plugin to collect tests based on fixtures being'
                 ' used by tests',
     long_description=read('README.rst'),

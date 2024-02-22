@@ -13,13 +13,16 @@ metadata:
     - pytest
     - plugin
     - test-framework
-    - test-selection
+    - test-execution
     - testing
+    - public
   namespace: quality-community
   annotations:
+    servicenow.com/app-code: pytest-fixturecollection
     github.com/project-slug: RedHatQE/pytest-fixturecollection
     backstage.io/techdocs-ref: https://github.com/RedHatQE/pytest-fixturecollection/blob/main/README.rst
+    feedback/email-to: 'jyejare@redhat.com'
 spec:
-  type: plugin
+  type: library
   owner: group:redhat/redhat-qe
   lifecycle: production

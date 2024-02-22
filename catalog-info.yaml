@@ -1,6 +1,6 @@
 # Catalog entry for Backstage [backstage.io]
 apiVersion: backstage.io/v1alpha1
-kind: Location
+kind: Component
 metadata:
   name: pytest-fixturecollection
   title: pytest-fixturecollection
@@ -24,5 +24,5 @@ metadata:
     feedback/email-to: 'jyejare@redhat.com'
 spec:
   type: library
-  owner: group:redhat/redhat-qe
+  owner: group:redhat/quality-community
   lifecycle: production

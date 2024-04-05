@@ -6,23 +6,24 @@ metadata:
   title: pytest-fixturecollection
   description: Pytest plugin to collect tests based on fixtures!
   links:
-    - title: PyPi
+    - title: pypi
       url: https://pypi.org/project/pytest-fixturecollection
+    - title: code
+      url: https://github.com/RedHatQE/pytest-fixturecollection
+      icon: github
   tags:
     - python
     - pytest
     - plugin
     - test-framework
     - test-execution
-    - testing
     - public
   namespace: quality-community
   annotations:
-    servicenow.com/app-code: pytest-fixturecollection
     github.com/project-slug: RedHatQE/pytest-fixturecollection
     backstage.io/techdocs-ref: https://github.com/RedHatQE/pytest-fixturecollection/blob/main/README.rst
     feedback/email-to: 'jyejare@redhat.com'
 spec:
-  type: library
-  owner: group:redhat/quality-community
+  type: plugin
+  owner: group:redhat/satellite-qe
   lifecycle: production
